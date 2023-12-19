@@ -20,15 +20,12 @@ public class UpdateQueryClass {
                 
                 // ? query to update
                 
-                String updateQuery = "UPDATE product SET prod_id = ? WHERE prod_id = ?; " +
-                "UPDATE stock SET prod_id = ? WHERE prod_id = ?";
+                String updateQuery = "UPDATE product SET prod_id = ? WHERE prod_id = ?; ";
                 try(PreparedStatement updateStatement1 = connection.prepareStatement(updateQuery);
                 ){
                     updateStatement1.clearParameters();
                     updateStatement1.setObject(1, "p1"); 
                     updateStatement1.setObject(2, "pp1"); 
-                    updateStatement1.setObject(3, "p1"); 
-                    updateStatement1.setObject(4, "pp1"); 
                     int resultSet =updateStatement1.executeUpdate();
                     System.out.println("Table Altering is done. Rows affected: " + Integer.toString(resultSet));
                 }
@@ -45,15 +42,12 @@ public class UpdateQueryClass {
                 
                 // ? query to update
                 
-                String updateQuery1 = "UPDATE depot SET dept_id = ? WHERE dept_id = ?; " +
-                "UPDATE stock SET dept_id = ? WHERE dept_id = ?";
+                String updateQuery1 = "UPDATE depot SET dept_id = ? WHERE dept_id = ?; ";
                 try(PreparedStatement updateStatement1 = connection.prepareStatement(updateQuery1);
                 ){
                     updateStatement1.clearParameters();
                     updateStatement1.setObject(1, "d1"); 
                     updateStatement1.setObject(2, "dd1"); 
-                    updateStatement1.setObject(3, "d1"); 
-                    updateStatement1.setObject(4, "dd1"); 
                     int resultSet =updateStatement1.executeUpdate();
                     System.out.println("Table Updating is done. Rows affected: " + Integer.toString(resultSet));
                 }

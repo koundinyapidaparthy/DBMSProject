@@ -21,18 +21,10 @@ public class InsertQueryClass {
                         productStatement.executeUpdate();
                     }
 
-                    // Check and insert into the stock table
-                    String stockQuery = "INSERT INTO stock (prod_id, dept_id, quantity) SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM stock WHERE prod_id = ? AND dept_id = ?)";
-                    try (PreparedStatement updateStatement1 = connection.prepareStatement(stockQuery)) {
-                        updateStatement1.setString(1, "p100");
-                        updateStatement1.setString(2, "d2");
-                        updateStatement1.setInt(3, 50);
-                        updateStatement1.setString(4, "p100");
-                        updateStatement1.setString(5, "d2");
-                        int resultSet =updateStatement1.executeUpdate();
-                    System.out.println("Table Insertion is done. Rows affected: " + Integer.toString(resultSet));
-                    }
+                    // ? Insert into stock
 
+                    InsertQueryReuse.ReuseInsertQuery("p100", "d2", 50);
+                    
                 // ! 6. We add a depot (d100, Chicago, 100) in Depot and (p1, d100, 100) in Stock.
 
                 // ? query to insert
@@ -46,18 +38,7 @@ public class InsertQueryClass {
                     depotStatement.executeUpdate();
                 }
 
-                // Check and insert into the stock table
-                String stockQuery1 = "INSERT INTO stock (prod_id, dept_id, quantity) SELECT ?, ?, ? WHERE NOT EXISTS (SELECT 1 FROM stock WHERE prod_id = ? AND dept_id = ?)";
-                try (PreparedStatement updateStatement1 = connection.prepareStatement(stockQuery1)) {
-                    updateStatement1.setString(1, "p1");
-                    updateStatement1.setString(2, "d100");
-                    updateStatement1.setInt(3, 100);
-                    updateStatement1.setString(4, "p1");
-                    updateStatement1.setString(5, "d100");
-                     int resultSet =updateStatement1.executeUpdate();
-                    System.out.println("Table Insertion is done. Rows affected: " + Integer.toString(resultSet));
-                    
-                }
+                InsertQueryReuse.ReuseInsertQuery("p1", "d100", 100);
 
                 GetTableDetails.main(args);
             }
